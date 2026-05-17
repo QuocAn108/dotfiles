@@ -148,7 +148,7 @@ alias ld='lazydocker'
 # Git Aliases siêu tốc
 alias ga='git add'
 alias gaa='git add .'
-alias gc='git commit -m'
+alias gcm='git commit -m'
 alias gp='git push'
 alias gl='git pull'
 alias gs='git status'
