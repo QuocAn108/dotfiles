@@ -118,7 +118,7 @@ return {
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		-- [3] Khai báo các LSP Servers (Đã sửa phân cấp chuẩn)
+		-- [3] Khai báo các LSP Servers
 		local servers = {
 			lua_ls = {
 				mason_package = "lua-language-server",
@@ -153,6 +153,10 @@ return {
 			pyright = {
 				mason_package = "pyright",
 			},
+			-- 🚀 BỔ SUNG: Khai báo Java LSP Server ở đây
+			jdtls = {
+				mason_package = "jdtls",
+			},
 		}
 
 		-- [4] Tự động cài đặt thông qua Mason
@@ -177,7 +181,7 @@ return {
 			},
 		})
 
-		-- [5] Cấu hình Linting (Check lỗi cú pháp thời gian thực)
+		-- [5] Cấu hình Linting
 		local lint = require("lint")
 		lint.linters_by_ft = {
 			python = { "flake8" },
@@ -189,7 +193,7 @@ return {
 			end,
 		})
 
-		-- [6] Cấu hình Formatting (Tự động format chuẩn hóa code khi lưu file)
+		-- [6] Cấu hình Formatting
 		local format = require("lsp-format")
 		format.setup({})
 
@@ -197,12 +201,16 @@ return {
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-				-- Tự động format cho Python và Go khi nhấn lưu (:w)
-				if vim.bo[args.buf].filetype == "python" or vim.bo[args.buf].filetype == "go" then
+				-- Tự động format cho Python, Go và Java khi nhấn lưu (:w)
+				if
+					vim.bo[args.buf].filetype == "python"
+					or vim.bo[args.buf].filetype == "go"
+					or vim.bo[args.buf].filetype == "java"
+				then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = args.buf,
 						callback = function()
-							vim.lsp.buf.format({ async = false }) -- Đổi sang false để đảm bảo ghi file xong mới lưu hẳn
+							vim.lsp.buf.format({ async = false })
 						end,
 					})
 				end
