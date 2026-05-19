@@ -138,6 +138,11 @@ alias cat='bat'
 # Kích hoạt zoxide (thay thế cd - nó tự nhớ thư mục hay vào)
 eval "$(zoxide init zsh)"
 
+# Alias for chezmoi 
+alias ca="chezmoi add"
+alias cgc="chezmoi git -- commit -am"
+alias cgp="chezmoi git -- push"
+
 # Docker Aliases (Gõ nhanh tiết kiệm thời gian)
 alias d='docker'
 alias dc='docker-compose'
