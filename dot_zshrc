@@ -127,6 +127,7 @@ alias update='paru -Syu'
 alias c='clear'
 alias e='exit'
 alias sz='source .zshrc'
+alias ff='fastfetch'
 # Dùng eza thay cho ls (hiện icon, màu đẹp)
 alias ls='eza --icons --group-directories-first'
 alias ll='eza -lh --icons --group-directories-first'
