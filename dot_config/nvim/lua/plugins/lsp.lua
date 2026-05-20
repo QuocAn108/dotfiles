@@ -156,6 +156,13 @@ return {
 			-- 🚀 BỔ SUNG: Khai báo Java LSP Server ở đây
 			jdtls = {
 				mason_package = "jdtls",
+				cmd = {
+					"jdtls",
+					string.format(
+						"--jvm-arg=-javaagent:%s",
+						vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/lombok.jar")
+					),
+				},
 			},
 		}
 
