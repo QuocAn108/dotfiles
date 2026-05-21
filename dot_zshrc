@@ -121,6 +121,11 @@ alias nv='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias nz='nvim .zshrc'
+
+#Alias Zellij
+alias za='zellij attach || zellij'
+alias zl='zellij list-sessions'
+
 # Alias hệ thống
 alias ...='cd ../..'
 alias update='paru -Syu'
@@ -180,3 +185,14 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Tự động chạy Zellij một cách an toàn nếu đang ở interactive shell
+if [ -z "$ZELLIJ" ] && [ "$ZSH_EVAL_CONTEXT" = "toplevel" ]; then
+    if zellij list-sessions 2>/dev/null | grep -q -v "EXITED"; then
+        # Nếu có session cũ đang chạy ngầm, hỏi ông có muốn kết nối lại không
+        exec zellij attach $(zellij list-sessions | grep -v "EXITED" | head -n 1 | awk '{print $1}')
+    else
+        # Nếu không có session nào, tạo mới
+        exec zellij
+    fi
+fi
