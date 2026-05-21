@@ -164,6 +164,9 @@ alias gd='git diff'
 alias nvtop='nvtop' # Giao diện xem GPU cực đẹp
 alias vram='watch -n 0.5 nvidia-smi' # Đổi tên từ gpu thành vram để tránh trùng với git push của Oh My Zsh
 
+#alias reset dải màu
+alias fixdisp='kscreen-doctor output.HDMI-A-1.disable && sleep 1 && kscreen-doctor output.HDMI-A-1.enable'
+
 # Kích hoạt FZF tìm kiếm siêu tốc (Đặt trước khi chạy exec zellij)
 if command -v fzf >/dev/null 2>&1; then
     source <(fzf --zsh)
