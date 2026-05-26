@@ -209,7 +209,7 @@ return {
 							end
 						end
 
-						-- 🔥 TIẾN HÀNH KHỞI CHẠY JDTLS SETUP Chuẩn Đét
+						-- 🔥 TIẾN HÀNH KHỞI CHẠY JDTLS SETUP
 						require("lspconfig").jdtls.setup({
 							cmd = {
 								"jdtls",
@@ -236,7 +236,7 @@ return {
 						return
 					end
 
-					-- Các ngôn ngữ khác (Lua, Go, Python...) giữ nguyên như cũ
+					-- Các ngôn ngữ khác (Lua, Go, Python...) vẫn giữ nguyên như cũ
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
