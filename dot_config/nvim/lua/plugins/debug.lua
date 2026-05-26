@@ -27,7 +27,7 @@ return {
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
 		{
-			"<leader><F5>",
+			"<leader>dc",
 			function()
 				require("dap").continue()
 			end,
@@ -70,7 +70,7 @@ return {
 		},
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 		{
-			"<leader><F7>",
+			"<leader>du",
 			function()
 				require("dapui").toggle()
 			end,
@@ -132,14 +132,10 @@ return {
 		dap.configurations.java = {
 			{
 				type = "java",
-				request = "launch",
-				name = "Launch Java Application",
-				mainClass = function()
-					return require("jdtls.dap").get_main_class()
-				end,
-				projectName = function()
-					return require("jdtls.dap").get_project_name()
-				end,
+				request = "attach",
+				name = "Attach to Spring Boot (Port 5005)",
+				hostName = "127.0.0.1",
+				port = 5005,
 			},
 		}
 
