@@ -153,7 +153,6 @@ return {
 			pyright = {
 				mason_package = "pyright",
 			},
-			-- 🚀 BỔ SUNG: Khai báo Java LSP Server ở đây
 			jdtls = {
 				mason_package = "jdtls",
 				cmd = {
@@ -172,7 +171,6 @@ return {
 			table.insert(ensure_installed, server.mason_package or server_name)
 		end
 
-		-- Bổ sung các công cụ định dạng (Formatter) và soát lỗi (Linter)
 		vim.list_extend(ensure_installed, { "stylua", "gofumpt", "golines", "black", "flake8" })
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -181,10 +179,37 @@ return {
 			automatic_installation = false,
 			handlers = {
 				function(server_name)
-					-- 🚀 NẾU LÀ JDTLS THÌ CHẠY CẤU HÌNH ĐẶC BIỆT NÀY
-
+					-- 🚀 XỬ LÝ RIÊNG CHO JDTLS (JAVA) ĐỂ KẾT NỐI NVIM-DAP UI
 					if server_name == "jdtls" then
 						local lombok_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/lombok.jar")
+
+						-- 🔥 ĐOẠN CODE THU THẬP BUNDLES DEBUG ADAPTER TỪ MASON
+						local bundles = {}
+						local mason_registry = require("mason-registry")
+
+						if mason_registry.is_installed("java-debug-adapter") then
+							local pkg = mason_registry.get_package("java-debug-adapter")
+							local jar_path = vim.fn.glob(
+								pkg:get_install_path() .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
+								true
+							)
+							if jar_path ~= "" then
+								table.insert(bundles, jar_path)
+							end
+						end
+
+						if mason_registry.is_installed("java-test") then
+							local pkg = mason_registry.get_package("java-test")
+							local test_jars =
+								vim.split(vim.fn.glob(pkg:get_install_path() .. "/extension/server/*.jar", true), "\n")
+							for _, jar in ipairs(test_jars) do
+								if jar ~= "" then
+									table.insert(bundles, jar)
+								end
+							end
+						end
+
+						-- 🔥 TIẾN HÀNH KHỞI CHẠY JDTLS SETUP Chuẩn Đét
 						require("lspconfig").jdtls.setup({
 							cmd = {
 								"jdtls",
@@ -192,18 +217,26 @@ return {
 								vim.fn.expand("~/.cache/jdtls/config"),
 								"-data",
 								vim.fn.expand("~/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")),
-								-- Gọi JavaAgent Lombok
 								"--jvm-arg=-javaagent:" .. lombok_path,
-								-- 🚀 BỔ SUNG CỜ NÀY: Ép Java 17/21 boot classpath chứa Lombok
 								"--jvm-arg=-Xbootclasspath/a:" .. lombok_path,
 							},
-							-- 🚀 BỔ SUNG ĐOẠN NÀY: Ép JDTLS khởi động ở thư mục chứa file mvnw gốc
 							root_dir = require("lspconfig.util").root_pattern(".git", "mvnw"),
 							capabilities = capabilities,
+
+							-- Nạp bundle debug vào hệ thống lõi Java
+							init_options = {
+								bundles = bundles,
+							},
+
+							-- Tự động đính kèm liên kết cấu hình nvim-dap ngay khi jdtls kết nối thành công
+							on_attach = function(client, bufnr)
+								require("jdtls").setup_dap({ hotcodereplace = "auto" })
+							end,
 						})
 						return
 					end
-					-- Các ngôn ngữ khác (Lua, Go, Python...) vẫn giữ nguyên như cũ
+
+					-- Các ngôn ngữ khác (Lua, Go, Python...) giữ nguyên như cũ
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
@@ -229,8 +262,6 @@ return {
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
-				local client = vim.lsp.get_client_by_id(args.data.client_id)
-
 				-- Tự động format cho Python, Go và Java khi nhấn lưu (:w)
 				if
 					vim.bo[args.buf].filetype == "python"
