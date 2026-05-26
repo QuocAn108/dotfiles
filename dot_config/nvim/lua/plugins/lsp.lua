@@ -182,6 +182,7 @@ return {
 			handlers = {
 				function(server_name)
 					-- 🚀 NẾU LÀ JDTLS THÌ CHẠY CẤU HÌNH ĐẶC BIỆT NÀY
+
 					if server_name == "jdtls" then
 						local lombok_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/lombok.jar")
 						require("lspconfig").jdtls.setup({
@@ -191,14 +192,17 @@ return {
 								vim.fn.expand("~/.cache/jdtls/config"),
 								"-data",
 								vim.fn.expand("~/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")),
-								-- Ép JVM chạy jdtls phải cắn bùa Lombok ở đây
+								-- Gọi JavaAgent Lombok
 								"--jvm-arg=-javaagent:" .. lombok_path,
+								-- 🚀 BỔ SUNG CỜ NÀY: Ép Java 17/21 boot classpath chứa Lombok
+								"--jvm-arg=-Xbootclasspath/a:" .. lombok_path,
 							},
+							-- 🚀 BỔ SUNG ĐOẠN NÀY: Ép JDTLS khởi động ở thư mục chứa file mvnw gốc
+							root_dir = require("lspconfig.util").root_pattern(".git", "mvnw"),
 							capabilities = capabilities,
 						})
 						return
 					end
-
 					-- Các ngôn ngữ khác (Lua, Go, Python...) vẫn giữ nguyên như cũ
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
