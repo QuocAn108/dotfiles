@@ -138,11 +138,20 @@ return {
 				port = 5005,
 			},
 		}
+		local mason_registry = require("mason-registry")
+		local java_debug_pkg = mason_registry.get_package("java-debug-adapter")
+		local java_debug_path = java_debug_pkg:get_install_path()
+		local jar_path = vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true)
+
 		dap.adapters.java = function(callback)
 			callback({
-				type = "server",
-				host = "127.0.0.1",
-				port = 5005,
+				type = "executable",
+				command = "java",
+				args = {
+					"-jar",
+					jar_path,
+					"5005",
+				},
 			})
 		end
 
