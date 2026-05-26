@@ -1,4 +1,4 @@
--- debug.lua
+-- debug.luadebug
 --
 -- Shows how to use the DAP plugin to debug your code.
 --
@@ -138,6 +138,13 @@ return {
 				port = 5005,
 			},
 		}
+		dap.adapters.java = function(callback)
+			callback({
+				type = "server",
+				host = "127.0.0.1",
+				port = 5005,
+			})
+		end
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
