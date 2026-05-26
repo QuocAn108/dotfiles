@@ -128,6 +128,21 @@ return {
 				},
 			},
 		}
+
+		dap.configurations.java = {
+			{
+				type = "java",
+				request = "launch",
+				name = "Launch Java Application",
+				mainClass = function()
+					return require("jdtls.dap").get_main_class()
+				end,
+				projectName = function()
+					return require("jdtls.dap").get_project_name()
+				end,
+			},
+		}
+
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
 		dapui.setup({
