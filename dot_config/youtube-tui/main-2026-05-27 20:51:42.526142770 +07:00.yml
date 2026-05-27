@@ -1,9 +1,9 @@
 mouse_support: true
 invidious_instance: https://invidious.f5.si
-write_config: Try
+write_config: Never
 allow_unicode: true
 message_bar_default: Hello Boss Quoc An -_-
-images: Sixel
+images: Sixels
 refresh_after_modifying_search_filters: true
 syncing:
   download_images: true
@@ -22,9 +22,9 @@ api_key: YOUR API KEY HERE
 shell: sh
 legacy_input_handling: false
 env:
-  terminal-emulator: konsole -e
   video-player: mpv
   youtube-downloader: yt-dlp
-  save-path: ~/.local/share/youtube-tui/saved/
   browser: xdg-open
+  save-path: ~/.local/share/youtube-tui/saved/
+  terminal-emulator: konsole -e
   download-path: ~/Downloads/%(title)s-%(id)s.%(ext)s
