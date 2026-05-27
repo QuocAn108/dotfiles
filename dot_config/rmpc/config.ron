@@ -1,9 +1,0 @@
-#![enable(implicit_some)]
-Config(
-    address: "127.0.0.1:6600",
-    mouse_support: true,
-    album_art: (
-        method: None,
-    ),
-    theme: "catppuccin-mocha",
-)
