@@ -196,3 +196,6 @@ if [ -z "$ZELLIJ" ] && [ "$ZSH_EVAL_CONTEXT" = "toplevel" ]; then
         exec zellij
     fi
 fi
+
+export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/packages/jdtls/lombok.jar"
+[ -f ~/.env.local ] && source ~/.env.local
