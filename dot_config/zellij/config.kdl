@@ -166,6 +166,20 @@ keybinds clear-defaults=true {
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl q" { Quit; }
+        bind "Alt y" {
+            Run "bash" "-c" "echo -n 'Search YouTube: '; read query; rmpc searchyt -i \"$query\"" {
+                name "Search YouTube"
+                floating true
+                close_on_exit true
+            }
+        }
+        bind "Alt s" {
+            Run "bash" "-c" "echo -n 'Search SoundCloud: '; read query; rmpc searchyt --provider soundcloud -i \"$query\"" {
+                name "Search SoundCloud"
+                floating true
+                close_on_exit true
+            }
+        }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }

@@ -169,6 +169,10 @@ alias gd='git diff'
 alias nvtop='nvtop' # Giao diện xem GPU cực đẹp
 alias vram='watch -n 0.5 nvidia-smi' # Đổi tên từ gpu thành vram để tránh trùng với git push của Oh My Zsh
 
+# Rmpc YouTube/SoundCloud search aliases
+alias syt='rmpc searchyt -i'
+alias ssc='rmpc searchyt --provider soundcloud -i'
+
 #alias reset dải màu
 alias fixdisp='kscreen-doctor output.HDMI-A-1.disable && sleep 1 && kscreen-doctor output.HDMI-A-1.enable'
 
