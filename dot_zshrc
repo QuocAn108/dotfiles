@@ -205,3 +205,9 @@ export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/packages/jdtls/l
 export EDITOR="nvim"
 export VISUAL="nvim"
 [ -f ~/.env.local ] && source ~/.env.local
+
+# Ép zsh-syntax-highlighting dùng màu xanh dương cho các lệnh
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=#89b4fa,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#74c7ec,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#89dceb,bold'
