@@ -1,0 +1,15 @@
+/**
+ *
+ * Custom Monochromatic Blue Theme
+ * Based on kitty dark-theme.auto.conf palette
+ *
+ **/
+
+* {
+    background:     #0f121dFF;
+    background-alt: #1c233aFF;
+    foreground:     #cdd6f4FF;
+    selected:       #89b4faFF;
+    active:         #74c7ecFF;
+    urgent:         #f38ba8FF;
+}
