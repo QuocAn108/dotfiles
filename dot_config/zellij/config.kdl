@@ -315,7 +315,7 @@ simplified_ui true
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "catppuccin-mocha"
+theme "catppuccin-mocha-blue"
 // Theme to use when the host terminal reports a dark color palette.
 // Requires `theme_light` to also be set; otherwise `theme` is used.
 // 
@@ -369,7 +369,7 @@ default_layout "compact"
 //   - true (default, enabled)
 //   - false
 // 
-// pane_frames false
+pane_frames false
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -596,11 +596,11 @@ show_startup_tips false
 // Note: This only applies to web clients at the moment.
 // client_async_worker_tasks 4
 themes {
-    catppuccin-mocha {
+    catppuccin-mocha-blue {
         bg "#585b70"
         fg "#cdd6f4"
         red "#f38ba8"
-        green "#a6e3a1"
+        green "#89b4fa"
         yellow "#f9e2af"
         blue "#89b4fa"
         magenta "#f5c2e7"
