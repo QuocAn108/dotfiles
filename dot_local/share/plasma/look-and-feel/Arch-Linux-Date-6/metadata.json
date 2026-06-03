@@ -1,0 +1,20 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel/Splash",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "dont@email.me",
+                "Name": "fakename"
+            }
+        ],
+        "Category": "Plasma Splashscreens",
+        "Description": "Arch Linux Splashscreen with Date For Plasma 6",
+        "Id": "Arch-Linux-Date-6",
+        "License": "GPLv3",
+        "Name": "Arch-Linux-Date-6",
+        "Website": "https://github.com/plasma/splashscreens"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;",
+    "X-Plasma-APIVersion": "2"
+}
+
