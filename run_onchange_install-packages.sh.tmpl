@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# pkglist.txt hash: {{ include "pkglist.txt" | sha256sum }}
+# aurlist.txt hash: {{ include "aurlist.txt" | sha256sum }}
+
+# Define colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}==> Starting package installation system...${NC}"
+
+# Native packages list
+PACKAGES=(
+{{- range (splitList "\n" (include "pkglist.txt")) }}
+  {{- if . }}
+  {{ . | quote }}
+  {{- end }}
+{{- end }}
+)
+
+# AUR packages list
+AUR_PACKAGES=(
+{{- range (splitList "\n" (include "aurlist.txt")) }}
+  {{- if . }}
+  {{ . | quote }}
+  {{- end }}
+{{- end }}
+)
+
+# 1. Install/Update native packages
+if [ ${#PACKAGES[@]} -gt 0 ]; then
+    echo -e "${BLUE}==> Checking/Installing native packages (${#PACKAGES[@]} packages)...${NC}"
+    sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
+else
+    echo -e "${YELLOW}==> No native packages to install.${NC}"
+fi
+
+# 2. Bootstrap paru if not installed
+if ! command -v paru &> /dev/null; then
+    echo -e "${YELLOW}==> paru (AUR helper) not found. Bootstrapping paru...${NC}"
+    
+    # Ensure git and base-devel are installed
+    sudo pacman -S --needed --noconfirm base-devel git
+    
+    # Build and install paru
+    BUILD_DIR=$(mktemp -d)
+    git clone https://aur.archlinux.org/paru.git "$BUILD_DIR"
+    cd "$BUILD_DIR" || exit 1
+    makepkg -si --noconfirm
+    cd - >/dev/null || exit 1
+    rm -rf "$BUILD_DIR"
+    
+    echo -e "${GREEN}==> paru successfully bootstrapped!${NC}"
+fi
+
+# 3. Install/Update AUR packages
+if [ ${#AUR_PACKAGES[@]} -gt 0 ]; then
+    echo -e "${BLUE}==> Checking/Installing AUR packages (${#AUR_PACKAGES[@]} packages)...${NC}"
+    paru -S --needed --noconfirm "${AUR_PACKAGES[@]}"
+else
+    echo -e "${YELLOW}==> No AUR packages to install.${NC}"
+fi
+
+echo -e "${GREEN}==> Package installation system completed successfully!${NC}"

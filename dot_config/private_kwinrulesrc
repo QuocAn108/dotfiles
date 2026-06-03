@@ -1,0 +1,14 @@
+[General]
+count=1
+rules=kitty-no-border
+
+[kitty-no-border]
+Description=Kitty No Border Rule
+clientmachine=localhost
+clientmachinematch=0
+noborder=true
+noborderrule=2
+types=1
+wmclass=kitty
+wmclasscomplete=false
+wmclassmatch=1
