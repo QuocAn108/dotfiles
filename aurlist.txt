@@ -8,3 +8,4 @@ plasma6-applets-panel-colorizer-islands-separator-git
 plasma6-applets-virtual-desktop-bar-wayland
 rider
 visual-studio-code-bin
+tela-icon-theme

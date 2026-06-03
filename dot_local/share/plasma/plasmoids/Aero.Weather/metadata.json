@@ -1,0 +1,30 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "adolfo@librepixels.com",
+                "Name": "zayronxio"
+            },
+            {
+                "Email": "suj5al78@gmail.com",
+                "Name": "xcurx"
+            }
+        ],
+        "Name": "Aero Weather",
+        "Id": "Aero.Weather",
+        "Description": "Widget showing the current weather status.",
+        "Category": "Utilities",
+        "Icon": "weather-few-clouds",
+        "EnabledByDefault": true,
+        "License": "GPL-3.0+",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "1.0.0",
+        "Website": "https://github.com/xcurx/Aero-Weather"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-MainScript": "ui/main.qml"
+}
