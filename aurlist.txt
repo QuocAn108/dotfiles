@@ -1,5 +1,6 @@
 antigravity
 bruno-bin
+darkly
 elio-bin
 paru
 paru-debug
