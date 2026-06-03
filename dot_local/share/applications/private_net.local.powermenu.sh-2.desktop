@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/home/ryan-arch/.config/rofi/powermenu/powermenu.sh
+Name=Powerenu
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true
