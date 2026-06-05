@@ -3,6 +3,7 @@ return {
 	event = "VeryLazy",
 	lazy = false,
 	version = false,
+	build = "make",
 	opts = {
 		provider = "gemini",
 
