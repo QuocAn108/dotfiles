@@ -163,6 +163,19 @@ return {
 					),
 				},
 			},
+			rust_analyzer = {
+				mason_package = "rust-analyzer",
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+						},
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+				},
+			},
 		}
 
 		-- [4] Tự động cài đặt thông qua Mason
@@ -262,11 +275,12 @@ return {
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
-				-- Tự động format cho Python, Go và Java khi nhấn lưu (:w)
+				-- Tự động format cho Python, Go, Java và Rust khi nhấn lưu (:w)
 				if
 					vim.bo[args.buf].filetype == "python"
 					or vim.bo[args.buf].filetype == "go"
 					or vim.bo[args.buf].filetype == "java"
+					or vim.bo[args.buf].filetype == "rust"
 				then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = args.buf,

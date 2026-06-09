@@ -97,6 +97,7 @@ return {
 				"delve",
 				"debugpy",
 				"java",
+				"codelldb",
 			},
 		})
 		dap.adapters.python = {
@@ -154,6 +155,31 @@ return {
 				},
 			})
 		end
+
+		local codelldb_pkg = mason_registry.get_package("codelldb")
+		local codelldb_path = codelldb_pkg:get_install_path() .. "/extension/adapter/codelldb"
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = codelldb_path,
+				args = { "--port", "${port}" },
+			},
+		}
+
+		dap.configurations.rust = {
+			{
+				name = "Launch file",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+			},
+		}
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
