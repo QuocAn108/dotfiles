@@ -34,21 +34,21 @@ return {
 			desc = "Debug: Start/Continue",
 		},
 		{
-			"<leader><F1>",
+			"<leader>di",
 			function()
 				require("dap").step_into()
 			end,
 			desc = "Debug: Step Into",
 		},
 		{
-			"<leader><F2>",
+			"<leader>do",
 			function()
 				require("dap").step_over()
 			end,
 			desc = "Debug: Step Over",
 		},
 		{
-			"<leader><F3>",
+			"<leader>dt",
 			function()
 				require("dap").step_out()
 			end,
@@ -174,6 +174,20 @@ return {
 				type = "codelldb",
 				request = "launch",
 				program = function()
+					-- Tự động tìm tên binary từ Cargo.toml
+					local cargo_toml = vim.fn.getcwd() .. "/Cargo.toml"
+					if vim.fn.filereadable(cargo_toml) == 1 then
+						for line in io.lines(cargo_toml) do
+							local name = line:match('^name%s*=%s*"(.-)"')
+							if name then
+								local binary = vim.fn.getcwd() .. "/target/debug/" .. name
+								if vim.fn.executable(binary) == 1 then
+									return binary
+								end
+							end
+						end
+					end
+					-- Fallback nếu không tự tìm thấy
 					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
 				end,
 				cwd = "${workspaceFolder}",
