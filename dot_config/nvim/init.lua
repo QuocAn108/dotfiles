@@ -1,8 +1,6 @@
 -- File: init.lua
 
--- [[ Thiết lập biến toàn cục ]]
--- Các biến này cần được khai báo đầu tiên để các file khác có thể sử dụng.
-
+-- [[ Setup golbal variables ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
 vim.g.mapleader = " "
@@ -11,8 +9,7 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- [[ Thiết lập cấu hình lõi ]]
--- Tải các tùy chọn và keymaps cơ bản
+-- [[ Setup core configurations ]]
 require("core.options")
 require("core.keymaps")
 require("core.snippets")
@@ -24,7 +21,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -37,9 +34,9 @@ rtp:prepend(lazypath)
 require("lazy").setup("plugins", {})
 
 vim.diagnostic.config({
-	virtual_text = false, -- Tắt hẳn dòng chữ thông báo lỗi hiện tràn lan bên cạnh dòng code
-	signs = true, -- Chỉ giữ lại icon nhỏ (đỏ/vàng) ở rìa cột trái để biết dòng đó có lỗi
-	underline = true, -- Gạch chân đoạn code bị lỗi
+	virtual_text = false,
+	signs = true,
+	underline = true,
 })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

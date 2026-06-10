@@ -102,7 +102,7 @@ return {
 		})
 		dap.adapters.python = {
 			type = "executable",
-			command = "python", -- Hoặc đường dẫn đến phiên bản python của bạn
+			command = "python",
 			args = { "-m", "debugpy.adapter" },
 		}
 
@@ -113,7 +113,7 @@ return {
 				name = "Launch file",
 				program = "${file}",
 				pythonPath = function()
-					return "python" -- Hoặc đường dẫn đến phiên bản python của bạn
+					return "python"
 				end,
 			},
 			{
@@ -174,7 +174,6 @@ return {
 				type = "codelldb",
 				request = "launch",
 				program = function()
-					-- Tự động tìm tên binary từ Cargo.toml
 					local cargo_toml = vim.fn.getcwd() .. "/Cargo.toml"
 					if vim.fn.filereadable(cargo_toml) == 1 then
 						for line in io.lines(cargo_toml) do
@@ -187,7 +186,6 @@ return {
 							end
 						end
 					end
-					-- Fallback nếu không tự tìm thấy
 					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
 				end,
 				cwd = "${workspaceFolder}",

@@ -21,7 +21,6 @@ return {
 			},
 		})
 
-		-- [1] Tạo Keymaps khi LSP được kích hoạt
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -88,7 +87,6 @@ return {
 			end,
 		})
 
-		-- [2] Cấu hình hiển thị lỗi (Diagnostics)
 		vim.diagnostic.config({
 			severity_sort = true,
 			float = { border = "rounded", source = "if_many" },
@@ -118,7 +116,6 @@ return {
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		-- [3] Khai báo các LSP Servers
 		local servers = {
 			lua_ls = {
 				mason_package = "lua-language-server",
@@ -178,7 +175,6 @@ return {
 			},
 		}
 
-		-- [4] Tự động cài đặt thông qua Mason
 		local ensure_installed = {}
 		for server_name, server in pairs(servers) do
 			table.insert(ensure_installed, server.mason_package or server_name)
@@ -192,11 +188,9 @@ return {
 			automatic_installation = false,
 			handlers = {
 				function(server_name)
-					-- 🚀 XỬ LÝ RIÊNG CHO JDTLS (JAVA) ĐỂ KẾT NỐI NVIM-DAP UI
 					if server_name == "jdtls" then
 						local lombok_path = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/lombok.jar")
 
-						-- 🔥 ĐOẠN CODE THU THẬP BUNDLES DEBUG ADAPTER TỪ MASON
 						local bundles = {}
 						local mason_registry = require("mason-registry")
 
@@ -222,7 +216,6 @@ return {
 							end
 						end
 
-						-- 🔥 TIẾN HÀNH KHỞI CHẠY JDTLS SETUP
 						require("lspconfig").jdtls.setup({
 							cmd = {
 								"jdtls",
@@ -236,12 +229,10 @@ return {
 							root_dir = require("lspconfig.util").root_pattern(".git", "mvnw"),
 							capabilities = capabilities,
 
-							-- Nạp bundle debug vào hệ thống lõi Java
 							init_options = {
 								bundles = bundles,
 							},
 
-							-- Tự động đính kèm liên kết cấu hình nvim-dap ngay khi jdtls kết nối thành công
 							on_attach = function(client, bufnr)
 								require("jdtls").setup_dap({ hotcodereplace = "auto" })
 							end,
@@ -249,7 +240,6 @@ return {
 						return
 					end
 
-					-- Các ngôn ngữ khác (Lua, Go, Python...) vẫn giữ nguyên như cũ
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
@@ -257,7 +247,6 @@ return {
 			},
 		})
 
-		-- [5] Cấu hình Linting
 		local lint = require("lint")
 		lint.linters_by_ft = {
 			python = { "flake8" },
@@ -269,13 +258,11 @@ return {
 			end,
 		})
 
-		-- [6] Cấu hình Formatting
 		local format = require("lsp-format")
 		format.setup({})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
-				-- Tự động format cho Python, Go, Java và Rust khi nhấn lưu (:w)
 				if
 					vim.bo[args.buf].filetype == "python"
 					or vim.bo[args.buf].filetype == "go"

@@ -116,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# # Alias cho Neovim
+# # Alias Neovim
 alias nv='nvim'
 alias vi='nvim'
 alias vim='nvim'
@@ -126,29 +126,30 @@ alias nz='nvim .zshrc'
 alias za='zellij attach || zellij'
 alias zl='zellij list-sessions'
 
-# Alias hệ thống
+# Alias Shell
 alias ...='cd ../..'
 alias update='paru -Syu'
 alias c='clear'
 alias e='exit'
 alias sz='source .zshrc'
 alias ff='fastfetch'
-# Dùng eza thay cho ls (hiện icon, màu đẹp)
+
+# eza replace ls
 alias ls='eza --icons --group-directories-first'
 alias ll='eza -lh --icons --group-directories-first'
 
-# Dùng bat thay cho cat (có highlight code)
+# bat replace cat
 alias cat='bat'
 
-# Kích hoạt zoxide (thay thế cd - nó tự nhớ thư mục hay vào)
+# zoxide replace cd
 eval "$(zoxide init zsh)"
 
-# Alias for chezmoi 
+# Alias chezmoi 
 alias ca="chezmoi add"
 alias cgc="chezmoi git -- commit -am"
 alias cgp="chezmoi git -- push"
 
-# Docker Aliases (Gõ nhanh tiết kiệm thời gian)
+# Alias Docker
 alias d='docker'
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
@@ -156,7 +157,7 @@ alias dcd='docker-compose down'
 alias dcl='docker logs -f'
 alias ld='lazydocker'
 
-# Git Aliases siêu tốc
+# Alias Git
 alias ga='git add'
 alias gaa='git add .'
 alias gcm='git commit -m'
@@ -165,18 +166,18 @@ alias gl='git pull'
 alias gs='git status'
 alias gd='git diff'
 
-# Monitor phần cứng
-alias nvtop='nvtop' # Giao diện xem GPU cực đẹp
-alias vram='watch -n 0.5 nvidia-smi' # Đổi tên từ gpu thành vram để tránh trùng với git push của Oh My Zsh
+# Alias GPU
+alias nvtop='nvtop'
+alias vram='watch -n 0.5 nvidia-smi'
 
 # Rmpc YouTube/SoundCloud search aliases
 alias syt='rmpc searchyt -i'
 alias ssc='rmpc searchyt --provider soundcloud -i'
 
-#alias reset dải màu
+#alias reset display
 alias fixdisp='kscreen-doctor output.HDMI-A-1.disable && sleep 1 && kscreen-doctor output.HDMI-A-1.enable'
 
-# Kích hoạt FZF tìm kiếm siêu tốc (Đặt trước khi chạy exec zellij)
+# Activate fzf if available
 if command -v fzf >/dev/null 2>&1; then
     source <(fzf --zsh)
 fi
@@ -190,13 +191,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Tự động chạy Zellij một cách an toàn nếu đang ở interactive shell
+# Auto-attach to Zellij session if not already inside one
 if [ -z "$ZELLIJ" ] && [ "$ZSH_EVAL_CONTEXT" = "toplevel" ]; then
     if zellij list-sessions 2>/dev/null | grep -q -v "EXITED"; then
-        # Nếu có session cũ đang chạy ngầm, hỏi ông có muốn kết nối lại không
         exec zellij attach $(zellij list-sessions | grep -v "EXITED" | head -n 1 | awk '{print $1}')
     else
-        # Nếu không có session nào, tạo mới
         exec zellij
     fi
 fi
@@ -206,7 +205,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 [ -f ~/.env.local ] && source ~/.env.local
 
-# Ép zsh-syntax-highlighting dùng màu xanh dương cho các lệnh
+# Zsh syntax highlighting styles
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=#89b4fa,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=#74c7ec,bold'
