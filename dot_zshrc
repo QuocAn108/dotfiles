@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -210,3 +211,14 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=#89b4fa,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=#74c7ec,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=#89dceb,bold'
+f88vpn() {
+    echo "Đang mở cửa sổ đăng nhập SSO..."
+    eval $(WEBKIT_DISABLE_COMPOSITING_MODE=1 GDK_BACKEND=x11 gp-saml-gui --gateway --no-verify vpn.f88.vn | grep -E '^(USER|COOKIE|OS)=')
+    
+    if [ -n "$COOKIE" ]; then
+        echo "Đã lấy được token! Đang khởi tạo đường hầm OpenConnect..."
+        echo "$COOKIE" | sudo openconnect --protocol=gp --user="$USER" --os="$OS" --usergroup=gateway:prelogin-cookie --passwd-on-stdin vpn.f88.vn --servercert pin-sha256:roVWyOejMaaZM/gwtKjQiwX0eG8AuluetZpfZ392TQQ=
+    else
+        echo "Đăng nhập thất bại hoặc bạn đã đóng cửa sổ SSO."
+    fi
+}

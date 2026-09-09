@@ -57,3 +57,13 @@ vim.o.scrolloff = 10
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 vim.o.confirm = true
+
+-- Auto reload file when changed outside of nvim
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	callback = function()
+		if vim.api.nvim_get_mode().mode ~= "c" and vim.fn.bufexists("[Command Line]") == 0 then
+			vim.cmd("checktime")
+		end
+	end,
+})
