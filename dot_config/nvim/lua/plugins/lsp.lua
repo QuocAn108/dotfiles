@@ -2,25 +2,14 @@ return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "folke/neodev.nvim", opts = {} },
 		{ "williamboman/mason.nvim", opts = {} },
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
 		"saghen/blink.cmp",
-		{ "mfussenegger/nvim-lint" },
-		{ "lukas-reineke/lsp-format.nvim" },
 	},
 
 	config = function()
-		require("neodev").setup({
-			library = {
-				enabled = true,
-				plugins = true,
-				types = true,
-			},
-		})
-
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -160,18 +149,11 @@ return {
 					),
 				},
 			},
-			rust_analyzer = {
-				mason_package = "rust-analyzer",
-				settings = {
-					["rust-analyzer"] = {
-						cargo = {
-							allFeatures = true,
-						},
-						checkOnSave = {
-							command = "clippy",
-						},
-					},
-				},
+			ts_ls = {
+				mason_package = "typescript-language-server",
+			},
+			omnisharp = {
+				mason_package = "omnisharp",
 			},
 		}
 
@@ -180,7 +162,7 @@ return {
 			table.insert(ensure_installed, server.mason_package or server_name)
 		end
 
-		vim.list_extend(ensure_installed, { "stylua", "gofumpt", "golines", "black", "flake8" })
+		vim.list_extend(ensure_installed, { "stylua", "gofumpt", "golines", "black", "flake8", "prettier", "csharpier" })
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
@@ -244,39 +226,8 @@ return {
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
+				["rust_analyzer"] = function() end,
 			},
-		})
-
-		local lint = require("lint")
-		lint.linters_by_ft = {
-			python = { "flake8" },
-		}
-
-		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-			callback = function()
-				lint.try_lint()
-			end,
-		})
-
-		local format = require("lsp-format")
-		format.setup({})
-
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(args)
-				if
-					vim.bo[args.buf].filetype == "python"
-					or vim.bo[args.buf].filetype == "go"
-					or vim.bo[args.buf].filetype == "java"
-					or vim.bo[args.buf].filetype == "rust"
-				then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = args.buf,
-						callback = function()
-							vim.lsp.buf.format({ async = false })
-						end,
-					})
-				end
-			end,
 		})
 	end,
 }

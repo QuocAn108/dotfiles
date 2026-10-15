@@ -48,6 +48,8 @@ return {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
+		"ColinKennedy/mega.logging",
+		"ColinKennedy/mega.cmdparse",
 		{
 			"MeanderingProgrammer/render-markdown.nvim",
 			opts = { file_types = { "markdown", "Avante" } },

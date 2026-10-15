@@ -4,6 +4,13 @@ return {
 	opts = {
 		ensure_installed = {
 			"go",
+			"rust",
+			"python",
+			"java",
+			"c_sharp",
+			"typescript",
+			"javascript",
+			"tsx",
 			"json",
 			"bash",
 			"c",
