@@ -6,10 +6,12 @@ return { -- Autoformat
     {
       '<leader>f',
       function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
+        require('conform').format({ async = false, lsp_format = 'fallback' })
+        vim.cmd('silent! update')
+        vim.notify('󰈈 Formatted and saved buffer', vim.log.levels.INFO)
       end,
       mode = '',
-      desc = '[F]ormat buffer',
+      desc = '[F]ormat and save buffer',
     },
   },
   opts = {
@@ -27,6 +29,13 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
+      go = { 'gofumpt', 'golines' },
+      python = { 'black' },
+      javascript = { 'prettier' },
+      typescript = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      typescriptreact = { 'prettier' },
+      cs = { 'csharpier' },
     },
   },
 }

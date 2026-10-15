@@ -4,6 +4,9 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Fast save buffer
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite / Save buffer' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 

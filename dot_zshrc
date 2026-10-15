@@ -166,6 +166,23 @@ alias gp='git push'
 alias gl='git pull'
 alias gs='git status'
 alias gd='git diff'
+alias lg='lazygit'
+
+# Alias Rust & Cargo
+alias cb='cargo build'
+alias cbr='cargo build --release'
+alias cr='cargo run'
+alias crr='cargo run --release'
+alias cch='cargo check'
+alias ccl='cargo clippy --all-targets --all-features -- -D warnings'
+alias ct='cargo nextest run'
+alias ctw='cargo watch -x "nextest run"'
+alias cfmt='cargo fmt --all'
+alias cup='cargo update'
+alias cpub='cargo publish'
+alias ctree='cargo tree --duplicate'
+alias cmach='cargo machete'
+alias bc='bacon'
 
 # Alias GPU
 alias nvtop='nvtop'
@@ -217,8 +234,9 @@ f88vpn() {
     
     if [ -n "$COOKIE" ]; then
         echo "Đã lấy được token! Đang khởi tạo đường hầm OpenConnect..."
-        echo "$COOKIE" | sudo openconnect --protocol=gp --user="$USER" --os="$OS" --usergroup=gateway:prelogin-cookie --passwd-on-stdin vpn.f88.vn --servercert pin-sha256:roVWyOejMaaZM/gwtKjQiwX0eG8AuluetZpfZ392TQQ=
+        echo "$COOKIE" | sudo openconnect --protocol=gp --user="$USER" --os="$OS" --usergroup=gateway:prelogin-cookie --passwd-on-stdin vpn.f88.vn --servercert pin-sha256:EpFC6Ajl+DIwxNa10rylfwMY6sH123FvVBRGL80Teqo= 
     else
         echo "Đăng nhập thất bại hoặc bạn đã đóng cửa sổ SSO."
     fi
 }
+export PATH="$HOME/.cargo/bin:$PATH"
