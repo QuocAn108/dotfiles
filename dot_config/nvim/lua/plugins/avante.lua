@@ -9,7 +9,7 @@ return {
 
 		providers = {
 			gemini = {
-				model = "gemini-1.5-pro-latest",
+				model = "gemini-3.8-flash",
 				extra_request_body = {
 					max_tokens = 4096,
 					temperature = 0,
