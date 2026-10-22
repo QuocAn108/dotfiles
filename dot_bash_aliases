@@ -1,0 +1,12 @@
+# ~/.bash_aliases - Automatically loaded by standard bash on Ubuntu/Debian/WSL
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+
+alias lg='lazygit'
+alias ld='lazydocker'
+alias ga='git add'
+alias gaa='git add .'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gl='git pull'
+alias gs='git status'
+alias gd='git diff'

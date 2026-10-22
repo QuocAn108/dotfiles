@@ -48,6 +48,7 @@ kitty
 konsole
 kwindowsystem5
 lazydocker
+lazygit
 libidn
 libkdcraw
 libpaper

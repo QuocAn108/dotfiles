@@ -29,6 +29,12 @@ AUR_PACKAGES=(
 {{- end }}
 )
 
+# Ensure pacman exists before trying Arch package management
+if ! command -v pacman &> /dev/null; then
+    echo -e "${YELLOW}==> Non-Arch Linux environment detected (pacman not found). Skipping Arch package bootstrap.${NC}"
+    exit 0
+fi
+
 # 1. Install/Update native packages
 if [ ${#PACKAGES[@]} -gt 0 ]; then
     echo -e "${BLUE}==> Checking/Installing native packages (${#PACKAGES[@]} packages)...${NC}"
