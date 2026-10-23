@@ -187,13 +187,6 @@ alias bc='bacon'
 alias nvtop='nvtop'
 alias vram='watch -n 0.5 nvidia-smi'
 
-# Rmpc YouTube/SoundCloud search aliases
-alias syt='rmpc searchyt -i'
-alias ssc='rmpc searchyt --provider soundcloud -i'
-
-#alias reset display
-alias fixdisp='kscreen-doctor output.HDMI-A-1.disable && sleep 1 && kscreen-doctor output.HDMI-A-1.enable'
-
 # Activate fzf if available
 if command -v fzf >/dev/null 2>&1; then
     source <(fzf --zsh)
