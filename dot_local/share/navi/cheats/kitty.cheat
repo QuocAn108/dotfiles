@@ -1,0 +1,25 @@
+% kitty, terminal, keymaps
+
+# [Window] Bật / Tắt chế độ toàn màn hình (Fullscreen)
+echo "Keymap Kitty: <Alt + Enter>"
+
+# [Window] Phóng to tối đa cửa sổ (Toggle Maximized)
+echo "Keymap Kitty: <Alt + F10>"
+
+# [Font] Tăng kích thước chữ
+echo "Keymap Kitty: <Ctrl + Shift + => hoặc <Ctrl + Shift + +>"
+
+# [Font] Giảm kích thước chữ
+echo "Keymap Kitty: <Ctrl + Shift + ->"
+
+# [Font] Reset kích thước chữ về mặc định
+echo "Keymap Kitty: <Ctrl + Shift + Backspace>"
+
+# [Config] Tải lại cấu hình kitty.conf không cần tắt terminal
+echo "Keymap Kitty: <Ctrl + Shift + F5>"
+
+# [Clipboard] Sao chép vào clipboard
+echo "Keymap Kitty: <Ctrl + Shift + C>"
+
+# [Clipboard] Dán từ clipboard
+echo "Keymap Kitty: <Ctrl + Shift + V>"

@@ -1,0 +1,19 @@
+% arch, pacman, paru
+
+# Cập nhật toàn bộ hệ thống gồm Arch repos và AUR (Alias: update)
+paru -Syu
+
+# Tìm kiếm gói phần mềm trên Arch repos và AUR
+paru -Ss <search_term>
+
+# Xem thông tin chi tiết của một package
+pacman -Si <package_name>
+
+# Xóa các gói mồ côi (orphans không còn gói nào phụ thuộc vào)
+sudo pacman -Rns $(pacman -Qtdq)
+
+# Dọn dẹp cache tải về của pacman
+sudo pacman -Sc
+
+# Liệt kê các gói bạn đã tự tay cài đặt rõ ràng (Explicitly installed)
+pacman -Qe

@@ -1,0 +1,11 @@
+# Navi Configuration
+finder:
+  command: fzf
+
+cheats:
+  paths:
+    - ~/.local/share/navi/cheats
+
+shell:
+  command: zsh
+

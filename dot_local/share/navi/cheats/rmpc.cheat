@@ -1,0 +1,28 @@
+% rmpc, music, keymaps
+
+# [CLI] Tìm kiếm và phát nhạc YouTube tương tác (Alias: syt)
+rmpc searchyt -i "<search_query>"
+
+# [CLI] Tìm kiếm và phát nhạc SoundCloud tương tác (Alias: ssc)
+rmpc searchyt --provider soundcloud -i "<search_query>"
+
+# [In-App] Tạm dừng hoặc phát tiếp (Play / Pause)
+echo "Keymap RMPC: [p]"
+
+# [In-App] Chuyển bài kế tiếp / bài trước đó
+echo "Keymap RMPC: [>] bài kế tiếp, [<] bài trước"
+
+# [In-App] Tua tới trước / lui sau
+echo "Keymap RMPC: [f] tua tới (+5s), [b] tua lui (-5s)"
+
+# [In-App] Tăng / Giảm âm lượng
+echo "Keymap RMPC: [.] tăng âm lượng, [,] giảm âm lượng"
+
+# [In-App] Chuyển Tab (Queue, Playlists, Library, Artists, Search)
+echo "Keymap RMPC: [1] Queue, [2] Playlists, [3] Library, [4] Artists, [F] Search"
+
+# [In-App] Cập nhật lại kho nhạc từ ổ đĩa
+echo "Keymap RMPC: [u] cập nhật database, [U] rescan toàn bộ"
+
+# [In-App] Xem danh sách toàn bộ phím tắt trong app
+echo "Keymap RMPC: [?]"

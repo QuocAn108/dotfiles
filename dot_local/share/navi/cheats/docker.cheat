@@ -1,0 +1,27 @@
+% docker, containers
+
+# Mở giao diện quản lý Lazydocker tương tác (Alias: ld)
+lazydocker
+
+# Truy cập Bash shell của một container đang chạy
+docker exec -it <running_container_id> /bin/bash
+
+# Truy cập Sh shell của một container đang chạy (Alpine...)
+docker exec -it <running_container_id> /bin/sh
+
+# Xem realtime log của container (Follow & Tail 100 dòng)
+docker logs -f --tail 100 <running_container_id>
+
+# Khởi động dịch vụ Docker Compose ngầm (Alias: dcu)
+docker-compose up -d
+
+# Tắt dịch vụ Docker Compose (Alias: dcd)
+docker-compose down
+
+# Dừng tất cả container đang chạy
+docker stop $(docker ps -q)
+
+# Dọn dẹp sạch sẽ cache, container đã tắt và dangling images
+docker system prune -f
+
+$ running_container_id: docker ps --format '{{.ID}}\t{{.Names}}\t{{.Image}}' --- --headers 0 --column 1

@@ -23,7 +23,6 @@ extra-cmake-modules
 eza
 fastfetch
 fcitx5
-fcitx5-bamboo
 fcitx5-configtool
 fcitx5-gtk
 fcitx5-qt
@@ -71,6 +70,7 @@ mold
 mpc
 mpd
 nano
+navi
 ncmpcpp
 neovim
 networkmanager
@@ -106,6 +106,7 @@ snapper
 sof-firmware
 sudo
 telegram-desktop
+tealdeer
 ttf-jetbrains-mono-nerd
 ueberzugpp
 ufw

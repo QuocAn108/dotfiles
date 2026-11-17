@@ -1,0 +1,28 @@
+% chezmoi, dotfiles
+
+# Xem trạng thái các file có thay đổi giữa máy và chezmoi
+chezmoi status
+
+# Xem chi tiết khác biệt (diff) của các file cấu hình
+chezmoi diff
+
+# Áp dụng các thay đổi từ chezmoi vào máy
+chezmoi apply
+
+# Cập nhật dotfiles mới nhất từ Git repo và apply vào máy
+chezmoi update
+
+# Mở shell điều hướng đến thư mục nguồn dotfiles (~/.local/share/chezmoi)
+chezmoi cd
+
+# Thêm một file mới từ máy vào chezmoi quản lý (Alias: ca)
+chezmoi add <path_to_file>
+
+# Cập nhật lại toàn bộ file trong chezmoi từ các file đang có trên máy
+chezmoi re-add
+
+# Commit nhanh trong chezmoi git repo (Alias: cgc)
+chezmoi git -- commit -am "<commit_message>"
+
+# Push dotfiles lên GitHub remote (Alias: cgp)
+chezmoi git -- push

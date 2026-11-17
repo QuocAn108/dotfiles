@@ -2,6 +2,7 @@ antigravity-ide
 bruno-bin
 darkly
 elio-bin
+fcitx5-lotus
 gp-saml-gui-git
 jetbrains-toolbox
 paru

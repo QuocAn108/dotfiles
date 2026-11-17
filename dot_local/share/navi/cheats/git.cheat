@@ -1,0 +1,33 @@
+% git, vcs
+
+# Mở giao diện Lazygit tương tác (Alias: lg)
+lazygit
+
+# Bỏ commit gần nhất nhưng giữ nguyên file đã sửa (Soft Reset)
+git reset --soft HEAD~1
+
+# Hủy bỏ hoàn toàn commit gần nhất và xóa mọi thay đổi (Hard Reset)
+git reset --hard HEAD~1
+
+# Đổi lại nội dung commit message gần nhất
+git commit --amend -m "<new_message>"
+
+# Tạo và chuyển sang nhánh mới
+git checkout -b <new_branch_name>
+
+# Xóa một nhánh local đã chọn
+git branch -D <local_branch>
+
+# Đồng bộ và xóa các nhánh local đã bị xóa trên remote
+git remote prune origin
+
+# Xem log các commit gọn đẹp dạng cây
+git log --graph --oneline --decorate --all
+
+# Lưu tạm các thay đổi vào stash
+git stash push -m "<stash_message>"
+
+# Phục hồi thay đổi từ stash gần nhất
+git stash pop
+
+$ local_branch: git branch --format="%(refname:short)" --- --headers 0
