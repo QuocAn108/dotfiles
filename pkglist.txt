@@ -20,12 +20,14 @@ lazygit
 mariadb
 maven
 nano
+navi
 neovim
 noto-fonts-emoji
 nvtop
 python-pynvim
 ripgrep
 sudo
+tealdeer
 ttf-jetbrains-mono-nerd
 unzip
 wget

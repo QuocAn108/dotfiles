@@ -1,0 +1,25 @@
+% desktop, kde, system
+
+# [KDE] Mở nhanh terminal Kitty
+echo "Phím tắt hệ thống: <Ctrl + Alt + T>"
+
+# [KDE] Mở Rofi Powermenu (Tắt máy / Khởi động / Khóa màn hình)
+echo "Phím tắt hệ thống: <Alt + Shift + E>"
+
+# [KDE] Bật chế độ Overview các cửa sổ
+echo "Phím tắt hệ thống: <Super (Windows) + W>"
+
+# [KDE] Bật chế độ Grid View (Lưới cửa sổ)
+echo "Phím tắt hệ thống: <Super (Windows) + G>"
+
+# [KDE] Chuyển đổi giữa các Virtual Desktop
+echo "Phím tắt hệ thống: <Super + Ctrl + Mũi tên Trái / Phải>"
+
+# [KDE] Phóng to tối đa cửa sổ hiện tại
+echo "Phím tắt hệ thống: <Super + PageUp>"
+
+# [KDE] Đóng cửa sổ đang chọn
+echo "Phím tắt hệ thống: <Alt + F4>"
+
+# [Monitor] Reset lại màn hình HDMI-A-1 khi bị đen / lỗi hiển thị (Alias: fixdisp)
+kscreen-doctor output.HDMI-A-1.disable && sleep 1 && kscreen-doctor output.HDMI-A-1.enable

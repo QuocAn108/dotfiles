@@ -1,0 +1,43 @@
+% nvim, keymaps
+
+# [General] Lưu file nhanh (Save buffer)
+echo "Keymap trong Neovim: <Space> + w"
+
+# [File Tree] Mở / Đóng NeoTree
+echo "Keymap trong Neovim: \\ (dấu gạch chéo ngược)"
+
+# [Telescope] Tìm file trong dự án
+echo "Keymap trong Neovim: <Space> + s + f (hoặc <Space> + <Space> để tìm buffer)"
+
+# [Telescope] Live Grep tìm chuỗi văn bản trong toàn bộ project
+echo "Keymap trong Neovim: <Space> + s + g"
+
+# [Telescope] Tìm từ ngay dưới con trỏ
+echo "Keymap trong Neovim: <Space> + s + w"
+
+# [Telescope] Tìm file đã mở gần đây (Recent files)
+echo "Keymap trong Neovim: <Space> + s + ."
+
+# [Telescope] Tra cứu toàn bộ phím tắt đang hoạt động
+echo "Keymap trong Neovim: <Space> + s + k"
+
+# [Harpoon] Mở menu Harpoon nhanh
+echo "Keymap trong Neovim: <Ctrl+e> hoặc <Space> + h + h"
+
+# [Harpoon] Đánh dấu (Add mark) file hiện tại vào Harpoon
+echo "Keymap trong Neovim: <Space> + h + a"
+
+# [Harpoon] Nhảy nhanh đến file 1 / 2 / 3 / 4
+echo "Keymap trong Neovim: <Space> + 1 (hoặc 2, 3, 4)"
+
+# [Trouble] Bật / Tắt danh sách lỗi Diagnostic
+echo "Keymap trong Neovim: <Space> + x + x"
+
+# [UndoTree] Mở cây lịch sử hoàn tác (Undo timeline)
+echo "Keymap trong Neovim: <Space> + u"
+
+# [Navigation] Chuyển đổi giữa các cửa sổ chia đôi (Split windows)
+echo "Keymap trong Neovim: <Ctrl+h> trái, <Ctrl+l> phải, <Ctrl+j> dưới, <Ctrl+k> trên"
+
+# [Resize] Tăng / Giảm kích thước cửa sổ split
+echo "Keymap trong Neovim: <Ctrl + Mũi tên lên/xuống/trái/phải>"

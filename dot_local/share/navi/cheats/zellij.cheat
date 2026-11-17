@@ -1,0 +1,45 @@
+% zellij, keymaps
+
+# [Mode] Chuyển sang Locked Mode (để không đụng phím tắt app con như vim)
+echo "Keymap: <Ctrl+g> để Lock / Unlock Zellij"
+
+# [Mode] Mở Pane Mode (quản lý pane)
+echo "Keymap: <Ctrl+p> -> [n] mới, [d] dưới, [r] phải, [x] đóng, [f] fullscreen, [w] floating"
+
+# [Mode] Mở Tab Mode (quản lý tab)
+echo "Keymap: <Ctrl+t> -> [n] tab mới, [x] đóng tab, [r] đổi tên, [1-9] nhảy tab"
+
+# [Mode] Mở Resize Mode (chỉnh kích thước pane)
+echo "Keymap: <Ctrl+n> -> [h/j/k/l] hoặc [+/-] tăng/giảm kích thước"
+
+# [Mode] Mở Scroll & Search Mode
+echo "Keymap: <Ctrl+s> -> [s] tìm kiếm, [PageUp/PageDown] cuộn trang"
+
+# [Mode] Mở Session Mode
+echo "Keymap: <Ctrl+o> -> [w] quản lý session, [d] detach session"
+
+# [Fast] Bật/tắt Floating Panes
+echo "Keymap: <Alt+f> để toggle cửa sổ nổi (floating)"
+
+# [Fast] Tạo Pane mới ngay lập tức
+echo "Keymap: <Alt+n> để tạo pane mới nhanh"
+
+# [Fast] Di chuyển giữa các Pane
+echo "Keymap: <Alt+h/j/k/l> hoặc <Alt+Mũi tên>"
+
+# [Fast] Tìm nhạc YouTube trên RMPC
+echo "Keymap: <Alt+y> mở floating search YouTube"
+
+# [Fast] Tìm nhạc SoundCloud trên RMPC
+echo "Keymap: <Alt+s> mở floating search SoundCloud"
+
+# [CLI] Attach vào session đang có hoặc tạo session mới (Alias: za)
+zellij attach <session_name> || zellij
+
+# [CLI] Liệt kê các session hiện có (Alias: zl)
+zellij list-sessions
+
+# [CLI] Xóa một session cũ
+zellij delete-session <session_name>
+
+$ session_name: zellij list-sessions 2>/dev/null | awk '{print $1}' --- --headers 0
