@@ -25,3 +25,4 @@ docker stop $(docker ps -q)
 docker system prune -f
 
 $ running_container_id: docker ps --format '{{.ID}}\t{{.Names}}\t{{.Image}}' --- --headers 0 --column 1
+

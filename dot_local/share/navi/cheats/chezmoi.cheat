@@ -26,3 +26,4 @@ chezmoi git -- commit -am "<commit_message>"
 
 # Push dotfiles lên GitHub remote (Alias: cgp)
 chezmoi git -- push
+

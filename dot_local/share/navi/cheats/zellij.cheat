@@ -43,3 +43,4 @@ zellij list-sessions
 zellij delete-session <session_name>
 
 $ session_name: zellij list-sessions 2>/dev/null | awk '{print $1}' --- --headers 0
+

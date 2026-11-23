@@ -17,3 +17,4 @@ sudo pacman -Sc
 
 # Liệt kê các gói bạn đã tự tay cài đặt rõ ràng (Explicitly installed)
 pacman -Qe
+

@@ -26,3 +26,4 @@ echo "Keymap RMPC: [u] cập nhật database, [U] rescan toàn bộ"
 
 # [In-App] Xem danh sách toàn bộ phím tắt trong app
 echo "Keymap RMPC: [?]"
+

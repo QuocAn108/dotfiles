@@ -41,3 +41,4 @@ echo "Keymap trong Neovim: <Ctrl+h> trái, <Ctrl+l> phải, <Ctrl+j> dưới, <C
 
 # [Resize] Tăng / Giảm kích thước cửa sổ split
 echo "Keymap trong Neovim: <Ctrl + Mũi tên lên/xuống/trái/phải>"
+
